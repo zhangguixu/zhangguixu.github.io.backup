@@ -1,0 +1,1125 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="front-end-interview," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="BAT2014前端笔试面试题-初级篇
+来源：http://blog.jobbole.com/78738/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BAT2014前端笔试面试题-初级篇">
+<meta property="og:url" content="https://zhangguixu.github.io/2016/11/28/interview-09/index.html">
+<meta property="og:site_name" content="Zhangguixu's Blogs">
+<meta property="og:description" content="BAT2014前端笔试面试题-初级篇
+来源：http://blog.jobbole.com/78738/">
+<meta property="og:updated_time" content="2016-12-02T03:27:57.197Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BAT2014前端笔试面试题-初级篇">
+<meta name="twitter:description" content="BAT2014前端笔试面试题-初级篇
+来源：http://blog.jobbole.com/78738/">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6357877092683613000',
+      author: 'Admin'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhangguixu.github.io/2016/11/28/interview-09/"/>
+
+
+
+
+
+  <title> BAT2014前端笔试面试题-初级篇 | Zhangguixu's Blogs </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59687072";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zhangguixu's Blogs</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">the load to full-stack</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://zhangguixu.github.io/2016/11/28/interview-09/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="zhangguixu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Zhangguixu's Blogs">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Zhangguixu's Blogs" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                BAT2014前端笔试面试题-初级篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-28T23:01:34+08:00">
+                2016-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试题/" itemprop="url" rel="index">
+                    <span itemprop="name">面试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/28/interview-09/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/28/interview-09/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>BAT2014前端笔试面试题-初级篇</p>
+<p>来源：<a href="http://blog.jobbole.com/78738/" target="_blank" rel="external">http://blog.jobbole.com/78738/</a></p>
+<a id="more"></a>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ol>
+<li><p>JavaScript的数据类型有哪些？</p>
+<p> 基本类型：number,string,boolean,undefined,null</p>
+<p> 对象类型：Object</p>
+<p> 如何判断数组类型</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isArray</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(arr) === <span class="string">'[object Array]'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>已知ID的Input输入框，希望获取这个输入框的输入值，怎么做？</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(id).value</div></pre></td></tr></table></figure>
+</li>
+<li><p>希望获取到页面中所有的checkbox怎么做？</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">value</span>=<span class="string">"male"</span>/&gt;</span>男</div></pre></td></tr></table></figure>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> domList = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'input'</span>);</div><div class="line"><span class="keyword">var</span> checkList = [];</div><div class="line"><span class="keyword">var</span> len = domList.length;</div><div class="line"><span class="keyword">while</span>(len--)&#123;</div><div class="line">    <span class="keyword">if</span>(domList[len].type === <span class="string">'checkbox'</span>)&#123;</div><div class="line">        checkList.push(domList[len]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置一个已知ID的DIV的html内容为xxxx，字体颜色设置为黑色</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">'id'</span>);</div><div class="line">div.innerHTML = <span class="string">'xxxx'</span>;</div><div class="line">div.style.color = <span class="string">'#000'</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>当一个DOM节点被点击时候，我们希望能够执行一个函数，应该怎么做？</p>
+<p> 有三种方式</p>
+<ol>
+<li>直接在DOM里面绑定事件</li>
+<li>通过onclick绑定事件处理函数</li>
+<li><p>通过addEventListener\attachEvent</p>
+<p>DOM事件流的三个阶段</p>
+</li>
+<li><p>事件捕获</p>
+</li>
+<li>目标阶段</li>
+<li>事件冒泡</li>
+</ol>
+</li>
+<li><p>看下列代码输出为何？解释原因。</p>
+<p> 考察点：undefined</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a;</div><div class="line">alert(a);</div><div class="line">alert(b);</div></pre></td></tr></table></figure>
+<p> a声明了，但未赋值，因此输出为:<code>undefined</code>；b未声明，会报错。</p>
+</li>
+<li><p>看下列代码,输出什么？解释原因。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="literal">null</span>;</div><div class="line">alert(<span class="keyword">typeof</span> a);</div></pre></td></tr></table></figure>
+<p> 返回:<code>object</code>,实际上可以理解为空指针对象。</p>
+</li>
+<li><p>看下列代码,输出什么？解释原因。</p>
+<p> 考察点：隐式类型转换</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="literal">undefined</span>;</div><div class="line"><span class="literal">undefined</span> == <span class="literal">null</span>;</div><div class="line"><span class="number">1</span> == <span class="literal">true</span>;</div><div class="line"><span class="number">2</span> == <span class="literal">true</span>;</div><div class="line"><span class="number">0</span> == <span class="literal">false</span>;</div><div class="line"><span class="number">0</span> == <span class="string">''</span>;</div><div class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span>;</div><div class="line">[] == <span class="literal">false</span>; <span class="comment">//true</span></div><div class="line">[] == ![];  <span class="comment">//true</span></div><div class="line">[] == []; <span class="comment">//false</span></div></pre></td></tr></table></figure>
+<ol>
+<li>undefined == null为true，但是undefined === null为false</li>
+<li>大于0的数字，与true相等</li>
+<li>大于0的数字，与true相等</li>
+<li>0 与 ‘’ 与 false相等</li>
+<li>0 与 ‘’ 与 false相等</li>
+<li>NaN不与任何相等，包括它本身</li>
+<li>Number([])为0，因此 [] == 0为true，且0 == false为true，因此[] == false为true。此外Number([9]) == 9</li>
+<li>因为![]为false，且[] == false为true，因此结果为false</li>
+<li><p>前一个数组和后一个数组是不同的对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="string">'11'</span> + <span class="number">2</span> -<span class="string">'1'</span>;</div><div class="line"><span class="built_in">console</span>.log(foo); <span class="comment">//11</span></div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> foo); <span class="comment">//number</span></div></pre></td></tr></table></figure>
+<p>由于运算符的优先级一样，所以先运算<code>&#39;11&#39; + 2</code>，结果为<code>&#39;112&#39;</code>，再运算<code>&#39;112&#39; - &#39;1&#39;</code>，由于字符串没有减法操作，因此会转为number类型进行运算，结果为<code>11</code>，foo的类型也为<code>number</code></p>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><p>看代码给答案。</p>
+<p> 考察点：引用类型</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">a.value = <span class="number">1</span>;</div><div class="line">b = a;</div><div class="line">b.value = <span class="number">2</span>;</div><div class="line">alert(a.value); <span class="comment">//2</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>已知有字符串foo=”get-element-by-id”,写一个function将其转化成驼峰表示法”getElementById”</p>
+<p>考察点：split(),charAt(),toUpperCase(),substring(),join()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">combo</span>(<span class="params">msg</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = msg.split(<span class="string">'-'</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>, len = arr.length; i &lt; len; i++)&#123;</div><div class="line">        arr[i] = arr[i].charAt(<span class="number">0</span>).toUpperCase() + arr[i].substring(<span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr.join(<span class="string">''</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>var numberArray = [3,6,2,4,1,5]; 1)实现倒排；2）实现对该数组进行降序排列；</p>
+<p>考察点：reverse(),sort(function())</p>
+<ol>
+<li><p>倒排</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> reverseArr = numberArray.reverse();</div><div class="line"><span class="built_in">console</span>.log(reverseArr);</div></pre></td></tr></table></figure>
+</li>
+<li><p>降序排列</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">numberArray.sort(<span class="function"><span class="keyword">function</span>(<span class="params">v1,v2</span>)</span>&#123;<span class="keyword">return</span> -(v1-v2)&#125;);</div><div class="line"><span class="built_in">console</span>.log(numberArray);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>输出今天的日期，以YYYY-MM-DD的方式，比如今天是2014年9月26日，则输出2014-09-26</p>
+<p>考察点：Date,getFullYear(),getMonth(),getDate()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="keyword">var</span> year = d.getFullYear(),</div><div class="line">    month = d.getMonth() + <span class="number">1</span>,</div><div class="line">    day = d.getDate() + <span class="number">1</span>;</div><div class="line"></div><div class="line">month = month &gt;= <span class="number">10</span> ? month : <span class="string">'0'</span> + month;</div><div class="line">day = day &gt;= <span class="number">10</span> ? day : <span class="string">'0'</span> + day;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(year + <span class="string">'-'</span> + month + <span class="string">'-'</span> + day);</div></pre></td></tr></table></figure>
+</li>
+<li><p>将字符串”<tr><td>{$id}</td><td>{$name}</td></tr>“中的{$id}替换成10，{$name}替换成Tony</p>
+<p>考察点：正则表达式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'&lt;tr&gt;&lt;td&gt;&#123;$id&#125;&lt;/td&gt;&lt;td&gt;&#123;$name&#125;&lt;/td&gt;&lt;/tr&gt;'</span>;</div><div class="line"><span class="keyword">var</span> newStr = str.replace(<span class="regexp">/\&#123;\$id\&#125;/g</span>,<span class="string">'10'</span>).replace(<span class="regexp">/\&#123;\$name\&#125;/g</span>,<span class="string">'Tony'</span>);</div><div class="line"><span class="built_in">console</span>.log(newStr);</div></pre></td></tr></table></figure>
+</li>
+<li><p>为了保证页面输出安全，我们经常需要对一些特殊的字符进行转义，请写一个函数escapeHtml，将&lt;, &gt;, &amp;, “进行转义</p>
+<p>考察点：replace(pattern,function(match,pos,originText){})</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">escapeHtml</span>(<span class="params">test</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> text.replace(<span class="regexp">/[&lt;&gt;"&amp;]/g</span>,<span class="function"><span class="keyword">function</span>(<span class="params">match</span>)</span>&#123;</div><div class="line">        <span class="keyword">switch</span>(match)&#123;</div><div class="line">            <span class="keyword">case</span> <span class="string">'&lt;'</span>:</div><div class="line">                <span class="keyword">return</span> <span class="string">'&amp;lt'</span>;</div><div class="line">            <span class="keyword">case</span> <span class="string">'&gt;'</span>:</div><div class="line">                <span class="keyword">return</span> <span class="string">'&amp;gt'</span>;</div><div class="line">            <span class="keyword">case</span> <span class="string">'&amp;'</span>:</div><div class="line">                <span class="keyword">return</span> <span class="string">'&amp;amp'</span>;</div><div class="line">            <span class="keyword">case</span> <span class="string">'\"'</span>:</div><div class="line">                <span class="keyword">return</span> <span class="string">'&amp;quot'</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>foo = foo || bar 这行代码的意思</p>
+<p>考察点：||操作符</p>
+<p>这叫<code>短路求值</code>，这段代码相当于</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(!foo)foo = bar;</div></pre></td></tr></table></figure>
+<p>即如果foo不存在，则将bar赋值给foo</p>
+</li>
+<li><p>看下列代码，将会输出什么</p>
+<p>考察点：变量提升(不会提升赋值部分)，作用域，变量查找</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="number">1</span>;</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(foo);</div><div class="line">    <span class="keyword">var</span> foo = <span class="number">2</span>;</div><div class="line">    <span class="built_in">console</span>.log(foo);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>这段代码相当于</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="number">1</span>;</div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> foo;</div><div class="line">    <span class="built_in">console</span>.log(foo);</div><div class="line">    foo = <span class="number">2</span>;</div><div class="line">    <span class="built_in">console</span>.log(foo);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>因此输出就是:undefined,2</p>
+</li>
+<li><p>把两个数组合并，并删除第二个元素</p>
+<p>考察点：concat(),splice()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> array1 = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>];</div><div class="line"><span class="keyword">var</span> bArray = [<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>];</div><div class="line"><span class="keyword">var</span> cArray = array1.concat(bArray);</div><div class="line">cArray.splice(<span class="number">1</span>,<span class="number">1</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>用js实现随机选取10–100之间的10个数字，存入一个数组，并排序。</p>
+<p>考察点：随机生成数，random()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [],len = <span class="number">10</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRandom</span>(<span class="params">start,end</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> range = end - start;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * range + start);</div><div class="line">&#125;</div><div class="line"><span class="keyword">while</span>(len--)&#123;</div><div class="line">    a.push(getRandom(<span class="number">10</span>,<span class="number">100</span>));</div><div class="line">&#125;</div><div class="line">a.sort(<span class="function"><span class="keyword">function</span>(<span class="params">v1,v2</span>)</span>&#123;<span class="keyword">return</span> v1 - v2;&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>有这样一个URL：<a href="http://item.taobao.com/item.htm?a=1&amp;b=2&amp;c=&amp;d=xxx&amp;e，请写一段JS程序提取URL中的各个GET参数(参数名和参数个数不确定)，将其按key-value形式返回到一个json结构中，如{a:&#39;1" target="_blank" rel="external">http://item.taobao.com/item.htm?a=1&amp;b=2&amp;c=&amp;d=xxx&amp;e，请写一段JS程序提取URL中的各个GET参数(参数名和参数个数不确定)，将其按key-value形式返回到一个json结构中，如{a:&#39;1</a>‘, b:’2’, c:’’, d:’xxx’, e:undefined}。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getJson</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> a = url.split(<span class="string">'?'</span>),</div><div class="line">        objArr = a[<span class="number">1</span>].split(<span class="string">'&amp;'</span>),</div><div class="line">        json = &#123;&#125;,</div><div class="line">        tmp = [],</div><div class="line">        i,len;</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>, len = objArr.length;i &lt; len; i++)&#123;</div><div class="line">        tmp = objArr[i].split(<span class="string">'='</span>);<span class="comment">//c=也会返回['c','']</span></div><div class="line">        <span class="keyword">if</span>(tmp.length === <span class="number">1</span>)&#123; <span class="comment">//即出现没有=等情况</span></div><div class="line">            json[tmp[<span class="number">0</span>]] = <span class="keyword">void</span> <span class="number">0</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            json[tmp[<span class="number">0</span>]] = tmp[<span class="number">1</span>];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> json;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>看下面代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for(var i=1;i&lt;=3;i++)&#123;</div><div class="line">  setTimeout(function()&#123;</div><div class="line">      console.log(i);</div><div class="line">  &#125;,0);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>因为<code>setTimeout(fn,0)</code>只是将任务放在任务队列里面，并不是马上执行，要等到for循环执行完毕之后，由于里面是三个闭包，都引用了i变量，执行完for循环之后，i的值为4，因此就输出：4,4,4</p>
+<p>要想输出1，2，3，则</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>;i &lt;= <span class="number">3</span>; i++)&#123;</div><div class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(i);</div><div class="line">        &#125;,<span class="number">0</span>);</div><div class="line">    &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>写一个function，清除字符串前后的空格</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">trim</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> s.replace(<span class="regexp">/^\s+|\s+$/g</span>,<span class="string">''</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>正则表达式构造函数var reg=new RegExp(“xxx”)与正则表达字面量var reg=//有什么不同？匹配邮箱的正则表达式？</p>
+<p>当使用RegExp()构造函数的时候，不仅需要转义引号（即\”表示”），并且还需要双反斜杠（即\表示一个\）。使用正则表达字面量的效率更高。</p>
+<p>邮箱的正则表达式？</p>
+</li>
+</ol>
+<ol>
+<li><p>JavaScript中callee和caller的作用</p>
+<ul>
+<li><p>caller是返回一个调用当前函数的函数的引用</p>
+</li>
+<li><p>callee是返回正在执行的函数体</p>
+</li>
+</ul>
+<p>如果一对兔子每月生一对兔子；一对新生兔，从第二个月起就开始生兔子；假定每对兔子都是一雌一雄，试问一对兔子，第n个月能繁殖成多少对兔子？（使用callee完成）（实际上就是斐波那契数列）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (n === <span class="number">1</span> || n === <span class="number">2</span> )<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">arguments</span>.callee(n<span class="number">-1</span>) + <span class="built_in">arguments</span>.callee(n<span class="number">-2</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/front-end-interview/" rel="tag"># front-end-interview</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/28/interview-08/" rel="next" title="2016年Web前端面试题目汇总">
+                <i class="fa fa-chevron-left"></i> 2016年Web前端面试题目汇总
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/28/interview-10/" rel="prev" title="BAT2014前端笔试面试题-中级篇">
+                BAT2014前端笔试面试题-中级篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/28/interview-09/"
+     data-title="BAT2014前端笔试面试题-初级篇"
+     data-content=""
+     data-url="https://zhangguixu.github.io/2016/11/28/interview-09/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/28/interview-09/"
+           data-title="BAT2014前端笔试面试题-初级篇" data-url="https://zhangguixu.github.io/2016/11/28/interview-09/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpeg"
+               alt="zhangguixu" />
+          <p class="site-author-name" itemprop="name">zhangguixu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhangguixu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              常用网站
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://segmentfault.com/" title="segmentfault" target="_blank">segmentfault</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gold.xitu.io/welcome" title="掘金" target="_blank">掘金</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.xuanfengge.com/" title="轩枫阁" target="_blank">轩枫阁</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/PeunZhang/" title="白色橡树" target="_blank">白色橡树</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yanhaijing.com/?url_type=39&object_type=webpage&pos=1" title="颜海镜" target="_blank">颜海镜</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/pigtail/" title="穆乙" target="_blank">穆乙</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.alloyteam.com/" title="Alloy Team" target="_blank">Alloy Team</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://f2er.club/" title="最牛前端收藏夹" target="_blank">最牛前端收藏夹</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/icepy/Front-End-Develop-Guide" title="前端开发指南" target="_blank">前端开发指南</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jstips.co/zh_CN/" title="jstips" target="_blank">jstips</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-text">题目</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangguixu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangguixu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

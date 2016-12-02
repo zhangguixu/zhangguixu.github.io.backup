@@ -1,0 +1,1090 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="front-end-interview," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="BAT2014前端笔试面试题-中级篇
+来源：http://blog.jobbole.com/78738/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BAT2014前端笔试面试题-中级篇">
+<meta property="og:url" content="https://zhangguixu.github.io/2016/11/28/interview-10/index.html">
+<meta property="og:site_name" content="Zhangguixu's Blogs">
+<meta property="og:description" content="BAT2014前端笔试面试题-中级篇
+来源：http://blog.jobbole.com/78738/">
+<meta property="og:updated_time" content="2016-12-02T03:27:57.197Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BAT2014前端笔试面试题-中级篇">
+<meta name="twitter:description" content="BAT2014前端笔试面试题-中级篇
+来源：http://blog.jobbole.com/78738/">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6357877092683613000',
+      author: 'Admin'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhangguixu.github.io/2016/11/28/interview-10/"/>
+
+
+
+
+
+  <title> BAT2014前端笔试面试题-中级篇 | Zhangguixu's Blogs </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59687072";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zhangguixu's Blogs</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">the load to full-stack</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://zhangguixu.github.io/2016/11/28/interview-10/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="zhangguixu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Zhangguixu's Blogs">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Zhangguixu's Blogs" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                BAT2014前端笔试面试题-中级篇
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-28T23:02:38+08:00">
+                2016-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试题/" itemprop="url" rel="index">
+                    <span itemprop="name">面试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/28/interview-10/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/28/interview-10/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>BAT2014前端笔试面试题-中级篇</p>
+<p>来源：<a href="http://blog.jobbole.com/78738/" target="_blank" rel="external">http://blog.jobbole.com/78738/</a></p>
+<a id="more"></a>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ol>
+<li><p>实现一个函数clone，可以对JavaScript中的5中主要类型进行进行值复制。</p>
+<p> 考察点：参数传递，类型检测，递归</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">clone</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(obj === <span class="literal">null</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(obj === <span class="literal">undefined</span>)&#123;</div><div class="line">        <span class="keyword">return</span> (<span class="keyword">void</span> <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> obj !== <span class="string">'object'</span>)&#123;</div><div class="line">        <span class="comment">//number,string</span></div><div class="line">        <span class="keyword">return</span> obj;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> o;</div><div class="line">    <span class="comment">//是否是数组</span></div><div class="line">    <span class="keyword">if</span>(<span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">'[object Array]'</span>)&#123;</div><div class="line">        o = [];</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        o = &#123;&#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> obj)&#123;</div><div class="line">        o[i] = clone(obj[i]);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> o;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>如何消除一个数组里面的重复元素</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(a))&#123;</div><div class="line">        <span class="keyword">var</span> len = a.length,item;</div><div class="line">        <span class="keyword">while</span>(len--)&#123;</div><div class="line">            item = a.shift();</div><div class="line">            <span class="keyword">if</span>(a.indexOf(item) === <span class="number">-1</span>)&#123;</div><div class="line">                a.push(item);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> a;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>小贤是一条可爱的小狗(Dog)，它的叫声很好听(wow)，每次看到主人的时候就会乖乖叫一声(yelp)。从这段描述可以得到以下对象：</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params"></span>)</span>&#123;&#125;</div><div class="line">Dog.prototype.wow = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'wow'</span>);&#125;</div><div class="line">Dog.prototype.yelp = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'yelp'</span>);&#125;</div></pre></td></tr></table></figure>
+<p> 小芒和小贤一样，原来也是一条可爱的小狗，可是突然有一天疯了(MadDog)，一看到人就会每隔半秒叫一声(wow)地不停叫唤(yelp)。请根据描述，按示例的形式用代码来实现</p>
+<p> 考察点：继承，定时器，原型链，this</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MadDog</span>(<span class="params"></span>)</span>&#123;&#125;;</div><div class="line">MadDog.prototype = <span class="keyword">new</span> Dog();</div><div class="line">MadDog.prototype.yelp = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">    setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        self.wow();</div><div class="line">    &#125;,<span class="number">500</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> dog = <span class="keyword">new</span> Dog();</div><div class="line">dog.yelp();</div><div class="line"><span class="keyword">var</span> madDog = <span class="keyword">new</span> MadDog();</div><div class="line">madDog.yelp();</div></pre></td></tr></table></figure>
+</li>
+<li><p>下面这个ul，如何点击每一列的时候输出其index</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"test"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>这是第一条<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>这是第二条<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>这是第三条<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<p> 考察点：闭包！！！</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> lis = <span class="built_in">document</span>.getElementsByTagName(li);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, len = lis.length; i &lt; len; i++)&#123;</div><div class="line">    lis[i].onclick = (<span class="function"><span class="keyword">function</span>(<span class="params">index</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            alert(index);</div><div class="line">        &#125;</div><div class="line">    &#125;)(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个JavaScript函数，输入指定类型的选择器(仅需支持id，class，tagName三种简单CSS选择器，无需兼容组合选择器)可以返回匹配的DOM节点，需考虑浏览器兼容性和性能。</p>
+<p> 考察点：捕获组（[全部,捕获组1,捕获组2,…]），数组化（IE8及更早）</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> query = <span class="function"><span class="keyword">function</span>(<span class="params">selector</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> pattern = <span class="regexp">/^(#)?(\.)?(\w+)?/ig</span>;</div><div class="line">    <span class="keyword">var</span> matches = pattern.exec(selector);</div><div class="line">    <span class="keyword">var</span> results = []; <span class="comment">//将节点类数组进行转化</span></div><div class="line">    <span class="keyword">var</span> list,len,i;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(!matches[<span class="number">3</span>])&#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'invalid selector'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//id选择器</span></div><div class="line">    <span class="keyword">if</span>(matches[<span class="number">1</span>])&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="built_in">document</span>.getElementById)&#123;</div><div class="line">           <span class="keyword">return</span>  <span class="built_in">document</span>.getElementById(matches[<span class="number">3</span>]);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">document</span>.all)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="built_in">document</span>.all[matches[<span class="number">3</span>]];</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'no id selector'</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//class选择器</span></div><div class="line">    <span class="keyword">if</span>(matches[<span class="number">2</span>])&#123;</div><div class="line">        <span class="keyword">if</span>(<span class="built_in">document</span>.getElementsByClassName)&#123;</div><div class="line">            list = <span class="built_in">document</span>.getElementsByClassName(matches[<span class="number">3</span>]);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">var</span> allDoms = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'*'</span>);</div><div class="line">            <span class="keyword">var</span> domArr = <span class="built_in">Array</span>.prototype.slice.call(allDom);</div><div class="line">            <span class="keyword">for</span>(i = <span class="number">0</span>, len = domArr.length; i &lt; len; i++)&#123;</div><div class="line">                <span class="keyword">if</span>(domArr[i].className === matches[])</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>【事件监听】请评价以下代码并给出改进意见。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.addEventListener)&#123;</div><div class="line">    <span class="keyword">var</span> addListener = <span class="function"><span class="keyword">function</span>(<span class="params">el,type,listener,useCapture</span>)</span>&#123;</div><div class="line">        el.addEventListener(type,listener,useCapture);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">document</span>.all)&#123;</div><div class="line">    addListener = <span class="function"><span class="keyword">function</span>(<span class="params">el,type,listener</span>)</span>&#123;</div><div class="line">        el.attachEvent(<span class="string">"on"</span>+type,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">          listener.apply(el);</div><div class="line">      &#125;);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>document.all是特性推断，是种不好的做法，应该改为特性检测，需要啥检测啥</p>
+</li>
+<li><p>有可能浏览器并不支持以上的两者形式，还有更多的可能没有考虑到。</p>
+</li>
+<li><p>attachEvent的事件处理函数是在全局作用域调用，因此this是指向window</p>
+</li>
+<li><p>并没有提供统一的接口</p>
+</li>
+<li><p>可以利用惰性加载的机制来改进，避免过多的检测</p>
+<p>考察点：事件监听处理，兼容性，惰性加载，特性检测，attachEvent</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addListener</span>(<span class="params">el,type,listener</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(el.addEventListener)&#123;</div><div class="line">        addListener = <span class="function"><span class="keyword">function</span>(<span class="params">el,type,listener</span>)</span>&#123;</div><div class="line">            el.addEventListener(type,listener,<span class="literal">false</span>);</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(el.attchEvent)&#123;</div><div class="line">        addListener = <span class="function"><span class="keyword">function</span>(<span class="params">el,type,listener</span>)</span>&#123;</div><div class="line">            el.attachEvent(<span class="string">'on'</span>+type,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                <span class="comment">//处理attachEvent事件处理函数的作用域问题</span></div><div class="line">                listener.call(el);</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        addListener = <span class="function"><span class="keyword">function</span>(<span class="params">el,type,listener</span>)</span>&#123;</div><div class="line">            el[<span class="string">'on'</span> + type] = listener;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//绑定事件，第一次才会执行</span></div><div class="line">    addListener(el,type,listener);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>给String对象添加一个方法，传入一个string类型的参数，然后将string的每个字符间加个空格返回，例如：addSpace(“hello world”) // -&gt; ‘h e l l o  w o r l d’</p>
+<p> 考察点：split,join</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addSpace</span>(<span class="params">s</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> s.split(<span class="string">''</span>).join(<span class="string">' '</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 直接给对象原型添加方法是不安全的做法，这也是为什么prototype.js后来陨落的原因。会给开发和维护带来很大的麻烦。</p>
+</li>
+<li><p>函数声明和函数表达式</p>
+<p> 在js中，解析器在解析的时候，会率先读取函数声明，并使其在执行任何代码之前可以用，至于函数表达式要等到解析器执行到所在的代码行，才会真正被执行。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">add(<span class="number">1</span>,<span class="number">2</span>); <span class="comment">//报错！！</span></div><div class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params">v1,v1</span>)</span>&#123;<span class="keyword">return</span> v1 + v2;&#125;</div><div class="line">sum(<span class="number">1</span>,<span class="number">2</span>); <span class="comment">//3,正常执行</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">v1,v2</span>)</span>&#123;<span class="keyword">return</span> v1 + v2;&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>定义一个log方法，让它可以代理console.log的方法</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log.apply(<span class="built_in">console</span>,<span class="built_in">arguments</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> apply和call的作用是切换函数对象的上下文，通过第一个参数来指定，也就是this的指向，不同之处就是传入的参数不同，call适合一两个参数，apply适合数组。</p>
+</li>
+<li><p>在JavaScript中什么是伪数组？</p>
+<p>NodeList，HTMLCollection，arguments，可以向数组一样的遍历，但是却不能使用数组的方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toArray</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(obj);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>对作用域上下文和this的理解，看下列代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> User = &#123;</div><div class="line">  <span class="attr">count</span>: <span class="number">1</span>,</div><div class="line">  <span class="attr">getCount</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.count;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(User.getCount());<span class="comment">// what?</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> func = User.getCount;</div><div class="line"><span class="built_in">console</span>.log(func()); <span class="comment">//what?</span></div></pre></td></tr></table></figure>
+<p>第一个输出：1,作用域是User<br>第二个输出：undefined,作用域是全局，而全局作用域里没有count变量</p>
+<p>那么如何确保User总是能访问到func的上下文，确保返回1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Function</span>.prototype.bind = <span class="built_in">Function</span>.prototype.bind || <span class="function"><span class="keyword">function</span>(<span class="params">context</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        self.apply(context,<span class="built_in">arguments</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> fnc = User.getCount.bind(User);</div></pre></td></tr></table></figure>
+</li>
+<li><p>原生的window.onload与jQuery的$(document).ready(function(){})有什么不同，如何用原生的JavaScript实现jQuery的ready方法？</p>
+<p>内在原理</p>
+<ul>
+<li><p>load事件：必须要等到页面所有元素（包括图片）加载完成之后才会触发</p>
+</li>
+<li><p>DOMContentLoaded事件：在DOM结构绘制完成之后就会触发</p>
+</li>
+</ul>
+<p>使用</p>
+<ul>
+<li><p>window.onload只能指定一个回调函数（多个会覆盖）</p>
+</li>
+<li><p>ready()能够指定多个</p>
+</li>
+</ul>
+</li>
+<li><p>想实现一个对页面某个节点的拖拽？如何做？（原生的JS）</p>
+<ol>
+<li><p>给需要拖拽的节点绑定mousedown，mousemove，mouseup事件</p>
+</li>
+<li><p>当mousedown事件触发后，开始拖拽</p>
+</li>
+<li><p>mousemove阶段，通过event.clientX和event.clientY获取拖拽位置，并实时更新位置</p>
+</li>
+<li><p>mouseup时，拖拽结束</p>
+</li>
+<li><p>需要注意浏览器边界的情况</p>
+</li>
+</ol>
+</li>
+<li><p>说出一下函数的作用是？空白区域应该填写什么？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//define</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">window</span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">        <span class="keyword">this</span>.str=str;</div><div class="line">    &#125;</div><div class="line">    fn.prototype.format = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> arg = ______;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.str.replace(_____,<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">             <span class="keyword">return</span> arg[b]||<span class="string">""</span>;</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">window</span>.fn = fn;</div><div class="line">&#125;)(<span class="built_in">window</span>);</div><div class="line"></div><div class="line"><span class="comment">//use</span></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> t = <span class="keyword">new</span> fn(<span class="string">'&lt;p&gt;&lt;a href="&#123;0&#125;"&gt;&#123;1&#125;&lt;/a&gt;&lt;span&gt;&#123;2&#125;&lt;/span&gt;&lt;/p&gt;'</span>);</div><div class="line">    <span class="built_in">console</span>.log(t.format(<span class="string">'http://www.alibaba.com'</span>,<span class="string">'Alibaba'</span>,<span class="string">'Welcome'</span>));</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>作用是：模版替换</p>
+<p>空白区域：</p>
+<ol>
+<li><p>Array.prototype.slice.call(arguments)</p>
+</li>
+<li><p>/{\d+}/g</p>
+</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/front-end-interview/" rel="tag"># front-end-interview</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/28/interview-09/" rel="next" title="BAT2014前端笔试面试题-初级篇">
+                <i class="fa fa-chevron-left"></i> BAT2014前端笔试面试题-初级篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/28/interview-11/" rel="prev" title="2014阿里前端笔试题">
+                2014阿里前端笔试题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/28/interview-10/"
+     data-title="BAT2014前端笔试面试题-中级篇"
+     data-content=""
+     data-url="https://zhangguixu.github.io/2016/11/28/interview-10/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/28/interview-10/"
+           data-title="BAT2014前端笔试面试题-中级篇" data-url="https://zhangguixu.github.io/2016/11/28/interview-10/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpeg"
+               alt="zhangguixu" />
+          <p class="site-author-name" itemprop="name">zhangguixu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhangguixu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              常用网站
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://segmentfault.com/" title="segmentfault" target="_blank">segmentfault</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gold.xitu.io/welcome" title="掘金" target="_blank">掘金</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.xuanfengge.com/" title="轩枫阁" target="_blank">轩枫阁</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/PeunZhang/" title="白色橡树" target="_blank">白色橡树</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yanhaijing.com/?url_type=39&object_type=webpage&pos=1" title="颜海镜" target="_blank">颜海镜</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/pigtail/" title="穆乙" target="_blank">穆乙</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.alloyteam.com/" title="Alloy Team" target="_blank">Alloy Team</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://f2er.club/" title="最牛前端收藏夹" target="_blank">最牛前端收藏夹</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/icepy/Front-End-Develop-Guide" title="前端开发指南" target="_blank">前端开发指南</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jstips.co/zh_CN/" title="jstips" target="_blank">jstips</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-text">题目</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangguixu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangguixu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

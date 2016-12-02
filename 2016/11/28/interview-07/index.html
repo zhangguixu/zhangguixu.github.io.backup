@@ -1,0 +1,1197 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="front-end-interview," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="BAT2014前端笔试面试题
+来源：http://www.cnblogs.com/coco1s/p/4034937.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BAT2014前端笔试面试题">
+<meta property="og:url" content="https://zhangguixu.github.io/2016/11/28/interview-07/index.html">
+<meta property="og:site_name" content="Zhangguixu's Blogs">
+<meta property="og:description" content="BAT2014前端笔试面试题
+来源：http://www.cnblogs.com/coco1s/p/4034937.html">
+<meta property="og:updated_time" content="2016-12-02T03:27:57.197Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BAT2014前端笔试面试题">
+<meta name="twitter:description" content="BAT2014前端笔试面试题
+来源：http://www.cnblogs.com/coco1s/p/4034937.html">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6357877092683613000',
+      author: 'Admin'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhangguixu.github.io/2016/11/28/interview-07/"/>
+
+
+
+
+
+  <title> BAT2014前端笔试面试题 | Zhangguixu's Blogs </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59687072";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zhangguixu's Blogs</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">the load to full-stack</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://zhangguixu.github.io/2016/11/28/interview-07/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="zhangguixu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Zhangguixu's Blogs">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Zhangguixu's Blogs" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                BAT2014前端笔试面试题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-28T23:00:14+08:00">
+                2016-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试题/" itemprop="url" rel="index">
+                    <span itemprop="name">面试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/11/28/interview-07/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/28/interview-07/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>BAT2014前端笔试面试题</p>
+<p>来源：<a href="http://www.cnblogs.com/coco1s/p/4034937.html" target="_blank" rel="external">http://www.cnblogs.com/coco1s/p/4034937.html</a></p>
+<a id="more"></a>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="HTML-篇"><a href="#HTML-篇" class="headerlink" title="HTML 篇"></a>HTML 篇</h3><ol>
+<li><p>你做的页面在哪些流览器测试过？这些浏览器的内核分别是什么?</p>
+<ul>
+<li>IE：trident内核</li>
+<li>Firefox：gecko内核</li>
+<li>Safari：Webkit内核</li>
+<li>Opera：Blink内核（以前是presto内核）</li>
+<li>Chrome：Blink（基于Webkit）</li>
+</ul>
+</li>
+<li><p>每个HTML文件里开头都有个很重要的东西，Doctype，知道这是干什么的吗？</p>
+<p> 最重要的作用是告诉浏览器按照何种规范来解析页面，对页面的布局呈现有很大影响</p>
+</li>
+<li><p>Quirks模式是什么？它和Standards模式有什么区别</p>
+<p> 怪异模式是IE弄出来的东西，会影响布局和css样式的解析</p>
+</li>
+<li><p>div+css的布局较table布局有什么优点？</p>
+<ul>
+<li>表现与结构相分离</li>
+<li>页面加载速度更快，结构更清晰，页面显得简洁</li>
+<li>易于优化，对搜索引擎更友好</li>
+</ul>
+</li>
+<li><p>a：img的alt与title有何异同？b：strong与em的异同？</p>
+<ul>
+<li>alt：如果不能显示图片，alt属性用来指定替换文字，还有就是阅读屏幕的时候，可以阅读出来。</li>
+<li><p>title：该属性为设置该属性的元素提供建议性的信息。</p>
+</li>
+<li><p>strong：粗体标签，表示内容的重要性</p>
+</li>
+<li>em：斜体标签，表示内容的强调点</li>
+</ul>
+</li>
+<li><p>优雅降级和渐进增强</p>
+<ol>
+<li><p>优雅降级：使用新特性，如css3的新属性，来丰富页面的效果，再针对低版本的浏览器进行兼容</p>
+</li>
+<li><p>渐进增强：针对低版本浏览器进行页面构建，保证基本的功能的情况下，再针对高级浏览器等改进和追加功能来达到更好的用户体验。</p>
+</li>
+</ol>
+</li>
+<li><p>为什么利用多个域名来存储网站资源会更有效？</p>
+<ul>
+<li>CDN缓存会更加方便</li>
+<li>突破浏览器的并发限制</li>
+<li>节约cookie带宽</li>
+<li>节约主域名的连接数，优化页面响应速度</li>
+<li>防止不必要的安全问题</li>
+</ul>
+</li>
+<li><p>请谈一下你对网页标准和标准制定机构重要性的理解。</p>
+<p> 标准是一个行业健康发展的保证，而且从一个开发者来说，看看前端的历史就知道由于先前的浏览器之争，给开发带来多大的麻烦，光顾着解决兼容性的问题，导致无法专注于业务，提高用户体验这些更为重要的事情上。不过如今，浏览器之争趋于平缓，标准被越来越广泛地接受。</p>
+</li>
+<li><p>请描述一下cookies，sessionStorage和localStorage的区别？</p>
+<ol>
+<li><p>cookie</p>
+<ul>
+<li>大小限制4Kb，</li>
+<li>发送请求会携带cookie</li>
+<li>不能跨域调用</li>
+<li>cookie的操作也很麻烦</li>
+</ul>
+</li>
+<li><p>seesionStorage &amp; localStorage</p>
+<ul>
+<li>更大容量</li>
+<li>更加便捷的操作API</li>
+<li>不会在请求中携带</li>
+<li>一个是会话级别的存储，一个持久化的本地存储</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>简述一下src与href的区别。</p>
+<ol>
+<li><p>src</p>
+<ul>
+<li>是source的缩写，指向外部资源的位置，指向的内容将会嵌入到文档中当前标签的所在位置。</li>
+<li>当浏览器解析到该元素时，会暂停其他资源的下载和处理，直到该资源加载、编译、执行完毕。这也是为什么要把js脚本放置到底部的原因。</li>
+</ul>
+</li>
+<li><p>href</p>
+<p> Hypertext Reference的缩写，指向网络资源的所在位置，建立和当前元素（锚点）或当前文档（链接）之间的连接。</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"common.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p> 浏览器会识别该文档为css文件，就会并行下载资源并且不会停止对当前文档的处理。这也是link方式比@import方式好的原因。</p>
+</li>
+</ol>
+</li>
+<li><p>页面中的图片格式有哪些</p>
+<p>png，jpeg，gif，svg</p>
+<p>Webp：谷歌开发的一种旨在加快图片加载速度的图片格式，图片压缩体积比jpeg的小很多，可以节省大量的服务器带宽资源和数据空间。</p>
+</li>
+<li><p>微格式？</p>
+<p>微格式（Microformats）是一种让机器可读的语义化XHTML词汇的集合，是结构化数据的开发标准，为特殊应用而指定的特殊格式。</p>
+<p>优点：可以让网站内容在搜索引擎结果界面可以显示额外的提示。</p>
+</li>
+<li><p>一次js请求一般情况下有哪些地方会有缓存处理？</p>
+<ol>
+<li>dns缓存</li>
+<li>cdn缓存</li>
+<li>浏览器缓存</li>
+<li>服务器缓存</li>
+</ol>
+</li>
+<li><p>一个页面上有大量的图片（大型电商网站），加载很慢，如何优化</p>
+<ol>
+<li><p>图片懒加载</p>
+<p> 在页面上添加一个滚动条事件，判断图片位置与浏览器顶端的距离与页面的距离，如果前者小于后者，优先加载</p>
+</li>
+<li><p>图片预加载</p>
+<p> 像页面中的幻灯片，相册</p>
+</li>
+<li><p>雪碧图</p>
+<p> 如果有小图居多，可以进行图片合并，制成雪碧图</p>
+</li>
+<li><p>预加载缩略图</p>
+<p> 如果图片过大，可以使用特殊编码的图片，加载时先加载一张压缩的特别厉害的缩略图，以提高用户体验。</p>
+</li>
+<li><p>图片展示区和图片大小保持一致。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="CSS篇"><a href="#CSS篇" class="headerlink" title="CSS篇"></a>CSS篇</h3><ol>
+<li><p>有哪些方式可以对一个DOM设置它的CSS样式</p>
+<ol>
+<li><p>外部样式，引入一个css文件</p>
+</li>
+<li><p>内部样式，将css代码写在&lt;style&gt;标签内</p>
+</li>
+<li><p>内联样式，写在DOM元素的style属性内</p>
+</li>
+</ol>
+</li>
+<li><p>CSS都有哪些选择器</p>
+<ul>
+<li>元素选择器</li>
+<li>id选择器</li>
+<li>类选择器</li>
+<li><p>属性选择器</p>
+<p>优先级的定义：</p>
+</li>
+</ul>
+<ol>
+<li>特殊性</li>
+<li>重要性</li>
+<li>来源</li>
+<li><p>顺序（声明的先后顺序）</p>
+<p>问题</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-class">.a</span> &#123;<span class="attribute">color</span>:blue;&#125;</div><div class="line">    <span class="selector-class">.b</span> &#123;<span class="attribute">color</span>:red;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"b a"</span>&gt;</span>123<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>输出结果是:<code>red</code>，样式定义的在文件中的先后顺序有关，而跟使用的先后无关。</p>
+</li>
+</ol>
+</li>
+<li><p>CSS中可以通过哪些属性定义，使得一个DOM元素不显示在浏览器的可视范围内</p>
+<ol>
+<li>display:none</li>
+<li>visibilty : hidden</li>
+<li>width:0 height:0</li>
+<li>opacity:0</li>
+<li>z-index:-1000</li>
+</ol>
+</li>
+<li><p>行内元素和块级元素区别，还有inline-block</p>
+</li>
+<li><p>外边距重叠</p>
+<p> 在CSS中，相邻的两个盒子的外边距可以结合成一个单独的外边距，这种合并外边距的方式被称为折叠。</p>
+<p> 折叠计算规则：</p>
+<ol>
+<li><p>两个相邻的外边距都是正数时，折叠结果是它们两者之间较大的值</p>
+</li>
+<li><p>两个相邻的外边距都是负数时，折叠结果是两者绝对值的较大值</p>
+</li>
+<li><p>两个外边距一正一负时，折叠结果是两者相加的和</p>
+</li>
+</ol>
+</li>
+<li><p>rgba()和opacity的透明效果有什么不同</p>
+<p> rgba()和opacity都能实现透明效果</p>
+<ul>
+<li><p>opacity作用于元素，以及元素内的所有内容的透明度</p>
+</li>
+<li><p>rgba()只作用于元素的颜色或其背景色（子元素不会继承透明效果）</p>
+</li>
+</ul>
+</li>
+<li><p>css中可以让文字在垂直和水平方向上重叠的两个属性是什么</p>
+<p> 垂直方向：line-height<br> 水平方向：letter-spacing</p>
+<p> letter-spaceing的妙用：</p>
+<p> 可以用于消除inline-block元素间的换行符空格间隙问题</p>
+</li>
+<li><p>如何垂直居中一个浮动元素</p>
+</li>
+<li><p>px和em的区别</p>
+<p> px和em都是长度单位，但是px是固定值，而em不是，而且em会继承父级元素的字体大小。</p>
+<p> 默认情况下，浏览器的字体大小为16px，即1em=16px</p>
+</li>
+<li><p>描述一个<code>reset</code>css文件并如何使用它，知道normalize.css？</p>
+<p>重置样式是为了去除掉浏览器的默认的样式，让浏览器达到一致和合理。但是由于重置样式重置了所有的默认样式，过于”粗暴”。于是就出现了改良版的normalize.css，它没有重置所有的样式风格，但有提供了一套合理的默认样式值。在让浏览器达到一致的同时，又不扰乱其他的东西。</p>
+</li>
+<li><p>Sass、Less是什么</p>
+<p>它们是css预处理器，是在css上的一层抽象。它们的好处</p>
+<ul>
+<li><p>结构清晰，便于扩展</p>
+</li>
+<li><p>可以方便地屏蔽浏览器私有语法差异，减少无意义的机械劳动</p>
+</li>
+<li><p>完全兼容css代码。</p>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/front-end-interview/" rel="tag"># front-end-interview</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/28/interview-06/" rel="next" title="2015奇虎360面试题">
+                <i class="fa fa-chevron-left"></i> 2015奇虎360面试题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/28/interview-08/" rel="prev" title="2016年Web前端面试题目汇总">
+                2016年Web前端面试题目汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/28/interview-07/"
+     data-title="BAT2014前端笔试面试题"
+     data-content=""
+     data-url="https://zhangguixu.github.io/2016/11/28/interview-07/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/28/interview-07/"
+           data-title="BAT2014前端笔试面试题" data-url="https://zhangguixu.github.io/2016/11/28/interview-07/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpeg"
+               alt="zhangguixu" />
+          <p class="site-author-name" itemprop="name">zhangguixu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhangguixu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              常用网站
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://segmentfault.com/" title="segmentfault" target="_blank">segmentfault</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gold.xitu.io/welcome" title="掘金" target="_blank">掘金</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.xuanfengge.com/" title="轩枫阁" target="_blank">轩枫阁</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/PeunZhang/" title="白色橡树" target="_blank">白色橡树</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yanhaijing.com/?url_type=39&object_type=webpage&pos=1" title="颜海镜" target="_blank">颜海镜</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/pigtail/" title="穆乙" target="_blank">穆乙</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.alloyteam.com/" title="Alloy Team" target="_blank">Alloy Team</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://f2er.club/" title="最牛前端收藏夹" target="_blank">最牛前端收藏夹</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/icepy/Front-End-Develop-Guide" title="前端开发指南" target="_blank">前端开发指南</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jstips.co/zh_CN/" title="jstips" target="_blank">jstips</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-篇"><span class="nav-text">HTML 篇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS篇"><span class="nav-text">CSS篇</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangguixu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangguixu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

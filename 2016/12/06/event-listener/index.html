@@ -1,0 +1,1059 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="跨浏览器事件处理," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在学习了
+
+事件基础知识
+事件对象属性
+
+
+之后，我们来看看如何实现一个跨浏览器的事件处理程序。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跨浏览器的事件处理程序实现">
+<meta property="og:url" content="https://zhangguixu.github.io/2016/12/06/event-listener/index.html">
+<meta property="og:site_name" content="Zhangguixu's Blogs">
+<meta property="og:description" content="在学习了
+
+事件基础知识
+事件对象属性
+
+
+之后，我们来看看如何实现一个跨浏览器的事件处理程序。">
+<meta property="og:updated_time" content="2016-12-05T11:41:44.682Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="跨浏览器的事件处理程序实现">
+<meta name="twitter:description" content="在学习了
+
+事件基础知识
+事件对象属性
+
+
+之后，我们来看看如何实现一个跨浏览器的事件处理程序。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6357877092683613000',
+      author: 'Admin'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhangguixu.github.io/2016/12/06/event-listener/"/>
+
+
+
+
+
+  <title> 跨浏览器的事件处理程序实现 | Zhangguixu's Blogs </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59687072";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zhangguixu's Blogs</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">the load to full-stack</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://zhangguixu.github.io/2016/12/06/event-listener/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="zhangguixu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Zhangguixu's Blogs">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Zhangguixu's Blogs" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                跨浏览器的事件处理程序实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-06T03:38:17+08:00">
+                2016-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/event/" itemprop="url" rel="index">
+                    <span itemprop="name">event</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/12/06/event-listener/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/06/event-listener/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在学习了</p>
+<ol>
+<li><a href="/2016/12/06/event-basis/" title="事件基础知识">事件基础知识</a></li>
+<li><a href="/2016/12/06/event-properties/" title="事件对象属性">事件对象属性</a>
+</li>
+</ol>
+<p>之后，我们来看看如何实现一个跨浏览器的事件处理程序。</p>
+<a id="more"></a>
+<h2 id="1-初步实现"><a href="#1-初步实现" class="headerlink" title="1. 初步实现"></a>1. 初步实现</h2><p>在《JavaScript高级程序设计》中提供了一个EventUtil的对象，里面实现了一个跨浏览器的事件绑定的API</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> EventUtil = &#123;</div><div class="line">    <span class="attr">addHandler</span> : <span class="function"><span class="keyword">function</span> (<span class="params">el, type, handler</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span>(el.addEventListener) &#123;</div><div class="line">            el.addEventListener(type, handler, <span class="literal">false</span>);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (el.attachEvent)(</div><div class="line">            el.attachEvent(<span class="string">"on"</span> + type, handler);</div><div class="line">        ) <span class="keyword">else</span> &#123;</div><div class="line">            el[<span class="string">"on"</span> + type] = handler;</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">removeHandler</span> : <span class="function"><span class="keyword">function</span> (<span class="params">el, type, handler</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span>(el.removeEventListener) &#123;</div><div class="line">            el.removeEventListener(type, handler);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (el.detachEvent) &#123;</div><div class="line">            el.detachEvent(<span class="string">"on"</span> + type, handler);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            el[<span class="string">"on"</span> + type] = <span class="literal">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是实现其实较为的简单直观，但是对于IE浏览器的处理其实有不好的地方，例如我们都知道attachEvent()中的事件处理程序会在全局作用域下执行，那么函数中的this就会指向window对象，这是一个问题，当然我们也可以对handler进行处理，绑定handler的函数作用域。此外，EventUtil并没有对event对象进行处理，因此传入handler的event也需要做兼容性处理，在封装方面做的就不好，编写handler时需要注意的地方就比较多。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> handler = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line">    <span class="comment">// 对event对象做兼容性处理，例如获取target等</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 绑定函数作用域</span></div><div class="line">handler = handler.bind(el);</div></pre></td></tr></table></figure>
+<h2 id="2-更好的实现"><a href="#2-更好的实现" class="headerlink" title="2. 更好的实现"></a>2. 更好的实现</h2><p>下面是Dean Edward的实现，这也是jquery所借鉴的，抛弃掉attachEvent方法，直接使用跨浏览器的实现方式，即<code>el.onXXX = handler</code>，这种方式的确定就是无法绑定多个，会进行覆盖，但是可以利用一些技巧来弥补。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// written by Dean Edwards, 2005</span></div><div class="line"><span class="comment">// with input from Tino Zijdel, Matthias Miller, Diego Perini</span></div><div class="line"><span class="comment">// http://dean.edwards.name/weblog/2005/10/add-event/</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span>(<span class="params">element, type, handler</span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (element.addEventListener) &#123;</div><div class="line">		element.addEventListener(type, handler, <span class="literal">false</span>);</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="comment">// assign each event handler a unique ID</span></div><div class="line">		<span class="keyword">if</span> (!handler.$$guid) handler.$$guid = addEvent.guid++;</div><div class="line">		<span class="comment">// create a hash table of event types for the element</span></div><div class="line">		<span class="keyword">if</span> (!element.events) element.events = &#123;&#125;;</div><div class="line">		<span class="comment">// create a hash table of event handlers for each element/event pair</span></div><div class="line">		<span class="keyword">var</span> handlers = element.events[type];</div><div class="line">		<span class="keyword">if</span> (!handlers) &#123;</div><div class="line">			handlers = element.events[type] = &#123;&#125;;</div><div class="line">			<span class="comment">// store the existing event handler (if there is one)</span></div><div class="line">			<span class="keyword">if</span> (element[<span class="string">"on"</span> + type]) &#123;</div><div class="line">				handlers[<span class="number">0</span>] = element[<span class="string">"on"</span> + type];</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">// store the event handler in the hash table</span></div><div class="line">		handlers[handler.$$guid] = handler;</div><div class="line">		<span class="comment">// assign a global event handler to do all the work</span></div><div class="line">		element[<span class="string">"on"</span> + type] = handleEvent;</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// a counter used to create unique IDs</span></div><div class="line">addEvent.guid = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeEvent</span>(<span class="params">element, type, handler</span>) </span>&#123;</div><div class="line">	<span class="keyword">if</span> (element.removeEventListener) &#123;</div><div class="line">		element.removeEventListener(type, handler, <span class="literal">false</span>);</div><div class="line">	&#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="comment">// delete the event handler from the hash table</span></div><div class="line">		<span class="keyword">if</span> (element.events &amp;&amp; element.events[type]) &#123;</div><div class="line">			<span class="keyword">delete</span> element.events[type][handler.$$guid];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleEvent</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> returnValue = <span class="literal">true</span>;</div><div class="line">	<span class="comment">// grab the event object (IE uses a global event object)</span></div><div class="line">	event = event || fixEvent(((<span class="keyword">this</span>.ownerDocument || <span class="keyword">this</span>.document || <span class="keyword">this</span>).parentWindow || <span class="built_in">window</span>).event);</div><div class="line">	<span class="comment">// get a reference to the hash table of event handlers</span></div><div class="line">	<span class="keyword">var</span> handlers = <span class="keyword">this</span>.events[event.type];</div><div class="line">	<span class="comment">// execute each event handler</span></div><div class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> handlers) &#123;</div><div class="line">		<span class="keyword">this</span>.$$handleEvent = handlers[i];</div><div class="line">		<span class="keyword">if</span> (<span class="keyword">this</span>.$$handleEvent(event) === <span class="literal">false</span>) &#123;</div><div class="line">			returnValue = <span class="literal">false</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> returnValue;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fixEvent</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">	<span class="comment">// add W3C standard event methods</span></div><div class="line">	event.preventDefault = fixEvent.preventDefault;</div><div class="line">	event.stopPropagation = fixEvent.stopPropagation;</div><div class="line">	<span class="keyword">return</span> event;</div><div class="line">&#125;;</div><div class="line">fixEvent.preventDefault = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.returnValue = <span class="literal">false</span>;</div><div class="line">&#125;;</div><div class="line">fixEvent.stopPropagation = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.cancelBubble = <span class="literal">true</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这段代码其实是对IE浏览器事件绑定的一个修补，特别是旧版本的（IE8及更早的版本）。jquery借鉴了这样的一个思路，写出了兼容各个浏览器的event模块。</p>
+<h2 id="3-jquery的实现思路"><a href="#3-jquery的实现思路" class="headerlink" title="3. jquery的实现思路"></a>3. jquery的实现思路</h2><p>在《JavaScript忍者秘籍》中，给出了一个更加高级的实现，他使用一个中间事件处理程序，并将所有的处理程序都保存在一个单独的对象上，最大化地控制处理的过程，这样做有几个好处：</p>
+<ul>
+<li>规范处理程序的上下文，这个指的是作用域的问题，正常来说，元素的事件处理程序的上下文应该就是元素本身，即<code>this === el</code>为true。</li>
+<li>修复Event对象的属性，通过兼容性的处理，来达到与标准无异。</li>
+<li>处理垃圾回收</li>
+<li>过滤触发或删除一些处理程序</li>
+<li>解绑特定类型的所有事件</li>
+<li>克隆事件处理程序</li>
+</ul>
+<p>依照这样的一个思路，我们来一步步实现这样一个模块。</p>
+<h3 id="3-1-修复Event对象的属性"><a href="#3-1-修复Event对象的属性" class="headerlink" title="3.1 修复Event对象的属性"></a>3.1 修复Event对象的属性</h3><p>修复主要针对一些重要的属性进行修复，结合<a href="./event.md">上一节的内容</a>，有以下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fixEvent</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">returnTrue</span> (<span class="params"></span>) </span>&#123;<span class="keyword">return</span> <span class="literal">true</span>;&#125;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">returnFalse</span> (<span class="params"></span>) </span>&#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(!event || !event.stopPropagation) &#123; <span class="comment">// 判断是否需要修复</span></div><div class="line">        <span class="keyword">var</span> old = event || <span class="built_in">window</span>.event; <span class="comment">// IE的event从window对象中获取</span></div><div class="line"></div><div class="line">        event = &#123;&#125;; <span class="comment">// 复制原有的event对象的属性</span></div><div class="line"></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> old) &#123;</div><div class="line">            event[prop] = old[prop];</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// 处理target</span></div><div class="line">        <span class="keyword">if</span>(!event.target) &#123;</div><div class="line">            event.target = event.srcElement || <span class="built_in">document</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">// 处理relatedTarget</span></div><div class="line">        event.relatedTarget = event.fromElement === event.target ? </div><div class="line">                                        event.toElement : </div><div class="line">                                        event.fromElement;</div><div class="line">        </div><div class="line">        <span class="comment">// 处理preventDefault</span></div><div class="line">        event.preventDefault = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            event.returnValue = <span class="literal">false</span>;</div><div class="line">            <span class="comment">// 标识，event对象是否调用了preventDefault函数</span></div><div class="line">            event.isDefaultPrevented = returnTrue; </div><div class="line">        &#125;</div><div class="line">        <span class="comment">/*</span></div><div class="line">            可以调用event.isDefaultPrevented()来查看是否调用event.preventDefault</div><div class="line">        */</div><div class="line">        event.isDefaultPrevented = returnFalse; </div><div class="line"></div><div class="line">        event.stopPropagation = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            event.cancelBubble = <span class="literal">true</span>;</div><div class="line">            event.isPropagationStopped = returnTrue;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        event.isPropagationStopped = returnFalse;</div><div class="line"></div><div class="line">        <span class="comment">// 阻止事件冒泡，并且阻止执行其他的事件处理程序</span></div><div class="line">        <span class="comment">// 借助标识位，可以在后面进行handlers队列处理的时候使用</span></div><div class="line">        event.stopImmediatePropagation = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            event.isImmediatePropagationStopped = returnTrue;</div><div class="line">            event.stopPropagation();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        event.isImmediatePropagationStopped = returnFalse;</div><div class="line"></div><div class="line">        <span class="comment">// 鼠标坐标，返回文档坐标</span></div><div class="line">        <span class="keyword">if</span>(event.clientX != <span class="literal">null</span>)&#123;</div><div class="line">            <span class="keyword">var</span> doc = <span class="built_in">document</span>.documentElement, body = <span class="built_in">document</span>.body;</div><div class="line"></div><div class="line">            event.pageX = event.clientX +</div><div class="line">                (doc &amp;&amp; doc.scrollLeft || body &amp;&amp; body.scrollLeft || <span class="number">0</span>) - </div><div class="line">                (doc &amp;&amp; doc.clientLeft || body &amp;&amp; body.clientLeft || <span class="number">0</span>);</div><div class="line">            </div><div class="line">            event.pageY = event.clientY +</div><div class="line">                (doc &amp;&amp; doc.scrollTop || body &amp;&amp; body.scrollTop || <span class="number">0</span>) -</div><div class="line">                (doc &amp;&amp; doc.clientTop || body &amp;&amp; body.clientTop || <span class="number">0</span>);</div><div class="line">        &#125;</div><div class="line">    </div><div class="line">        event.which = event.charCode || event.keyCode;</div><div class="line"></div><div class="line">        <span class="comment">// 鼠标点击模式 left -&gt; 0 middle -&gt; 1 right -&gt; 2</span></div><div class="line">        <span class="keyword">if</span>(event.button != <span class="literal">null</span>)&#123;</div><div class="line">            event.button = (event.button &amp; <span class="number">1</span> ? <span class="number">0</span> : </div><div class="line">                    (event.button &amp; <span class="number">4</span> ? <span class="number">1</span> : </div><div class="line">                        (event.button &amp; <span class="number">2</span> ? <span class="number">2</span> : <span class="number">0</span>)));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> event;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-2-中央对象保存dom元素信息"><a href="#3-2-中央对象保存dom元素信息" class="headerlink" title="3.2 中央对象保存dom元素信息"></a>3.2 中央对象保存dom元素信息</h3><p>这个的目的是为了给元素建立一个映射，标识元素和存储相关联的信息(事件类型和对应的事件处理程序)，在jquery里面使用的是selector，在《JavaScript忍者秘籍》中，使用的是guid。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cache = &#123;&#125;,</div><div class="line">    guidCounter = <span class="number">1</span>,</div><div class="line">    expando = <span class="string">"data"</span> + (<span class="keyword">new</span> <span class="built_in">Date</span>).getTime();</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> guid = el[expando];</div><div class="line">    <span class="keyword">if</span>(!guid)&#123;</div><div class="line">        guid = el[expando] = guidCounter++;</div><div class="line">        cache[guid] = &#123;&#125;;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> cache[guid];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeData</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> guid = el[expando];</div><div class="line">    <span class="keyword">if</span>(!guid) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">delete</span> cache[guid];</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">delete</span> el[expando];</div><div class="line">    &#125; <span class="keyword">catch</span>(e)&#123;</div><div class="line">        <span class="keyword">if</span>(el.removeAttribute)&#123;</div><div class="line">            el.removeAttribute(expando);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-3-绑定事件处理程序"><a href="#3-3-绑定事件处理程序" class="headerlink" title="3.3 绑定事件处理程序"></a>3.3 绑定事件处理程序</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nextGuid = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span>(<span class="params">el, type, fn</span>) </span>&#123;</div><div class="line">    </div><div class="line">    <span class="keyword">var</span> data = getData(el);</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(!data.handlers)data.handlers = &#123;&#125;;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(!data.handlers[type])data.handlers[type] = [];</div><div class="line"></div><div class="line">    <span class="comment">// 给事件处理程序赋予guid，便于后面删除</span></div><div class="line">    <span class="keyword">if</span>(!fn.guid)fn.guid = nextGuid++;</div><div class="line"></div><div class="line">    data.handlers[type].push(fn);</div><div class="line"></div><div class="line">    <span class="comment">// 为该元素的事件绑定统一的回调处理程序</span></div><div class="line">    <span class="keyword">if</span>(!data.dispatcher) &#123;</div><div class="line">        <span class="comment">// 是否启用data.dispatcher</span></div><div class="line">        data.disabled = <span class="literal">false</span>;</div><div class="line">        data.dispatcher = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span>(data.disabled)<span class="keyword">return</span>;</div><div class="line">            event = fixEvent(event);</div><div class="line">            <span class="keyword">var</span> handlers = data.handlers[event.type];</div><div class="line">            <span class="keyword">if</span>(handlers) &#123;</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, len = handlers.length; i &lt; len; i++)&#123;</div><div class="line">                    handlers[i].call(el, event);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 将统一的回调处理程序注册到，仅在第一次注册的时候需要</span></div><div class="line">    <span class="keyword">if</span>(data.handlers.length === <span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">if</span>(el.addEventListener)&#123;</div><div class="line">            el.addEventListener(type, data.dispatcher, <span class="literal">false</span>);</div><div class="line">        &#125; <span class="keyword">else</span> (el.attachEvent) &#123;</div><div class="line">            el.attachEvent(<span class="string">"on"</span> + type, data.dispatcher);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-4-清理资源"><a href="#3-4-清理资源" class="headerlink" title="3.4 清理资源"></a>3.4 清理资源</h3><p>绑定了事件，就还需要一个解绑事件，因为我们使用的是委托处理程序来控制处理流程，而不是直接绑定处理程序，所以也不能直接使用浏览器提供的解绑函数来处理。在这里，我们需要手动来清理一些资源，清理的顺序从小到大。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isEmpty</span>(<span class="params">o</span>)</span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> o)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">tidyUp</span>(<span class="params">el, type</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> data = getData(el);</div><div class="line"></div><div class="line">    <span class="comment">// 清理el的type事件的回调程序</span></div><div class="line">    <span class="keyword">if</span>(data.handlers[type].length === <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">delete</span> data.handlers[type];</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(el.removeEventListener)&#123;</div><div class="line">            el.removeEventListener(type, data.dispatcher, <span class="literal">false</span>);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(el.detachEvent)&#123;</div><div class="line">            el.detachEvent(<span class="string">"on"</span> + type, data.dispatcher);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 判断是否还有其他类型的事件处理程序，如果没有则进一步清除</span></div><div class="line">    <span class="keyword">if</span>(isEmpty(data.handlers))&#123;</div><div class="line">        <span class="keyword">delete</span> data.handlers;</div><div class="line">        <span class="keyword">delete</span> data.dispatcher;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 判断是否还需要data对象</span></div><div class="line">    <span class="keyword">if</span>(isEmpty(data)) &#123;</div><div class="line">        removeData(el);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-5-解绑事件处理程序"><a href="#3-5-解绑事件处理程序" class="headerlink" title="3.5 解绑事件处理程序"></a>3.5 解绑事件处理程序</h3><p>为了尽可能保持灵活，提供了以下的功能</p>
+<ul>
+<li><p>将一个元素的所有绑定事件进行解绑</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">removeEvent(el);</div></pre></td></tr></table></figure>
+</li>
+<li><p>将一个元素特定类型的所有事件进行解绑</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">removeEvent(el, <span class="string">"click"</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>将一个元素的特定处理程序进行解绑</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">removeEvent(el, <span class="string">"click"</span>, handler);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeEvent</span>(<span class="params">el, type, fn</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> data = getData(el);</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(!data.handlers)<span class="keyword">return</span>;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> removeType = <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</div><div class="line">        data.handlers[t] = [];</div><div class="line">        tidyUp(el, t);</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// 删除所有的处理程序</span></div><div class="line">    <span class="keyword">if</span>(!type)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> t <span class="keyword">in</span> data.handlers)&#123;</div><div class="line">            removeType(t);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> handlers = data.handlers[type];</div><div class="line">    <span class="keyword">if</span>(!handlers)<span class="keyword">return</span>;</div><div class="line"></div><div class="line">    <span class="comment">// 删除特定类型的所有事件处理程序</span></div><div class="line">    <span class="keyword">if</span>(!fn)&#123;</div><div class="line">        removeType(type);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 删除特定的事件处理程序，这个时候根据guid来进行删除</span></div><div class="line">    <span class="comment">// 这里需要考虑的就是可能一个事件处理程序被绑定到一个事件类型多次</span></div><div class="line">    <span class="comment">// 因此，这里需要用到handlers.length，删除的时候，需要n--</span></div><div class="line">    <span class="keyword">if</span>(fn.guid) &#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> n = <span class="number">0</span>; n &lt; handlers.length; n++)&#123; </div><div class="line">            <span class="keyword">if</span>(handlers[n].guid === fn.guid)&#123;</div><div class="line">                handlers.splice(n--, <span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 返回之前进行资源清理</span></div><div class="line">    tidyUp(el, type);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>到这里，我们就得到一个既保证通用性又保证性能的事件监听处理模块，然而事件的知识并不仅仅这么一点，本章节的内容将会继续出现在接下来的几个小节，一起构建一个完整的event体系的代码库。</p>
+<h2 id="4-参考"><a href="#4-参考" class="headerlink" title="4. 参考"></a>4. 参考</h2><ol>
+<li>《JavaScript高级程序设计》</li>
+<li>《JavaScript忍者秘籍》</li>
+<li><a href="http://dean.edwards.name/weblog/2005/10/add-event/" target="_blank" rel="external">addEvent</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/跨浏览器事件处理/" rel="tag"># 跨浏览器事件处理</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/06/event-properties/" rel="next" title="Event对象详解">
+                <i class="fa fa-chevron-left"></i> Event对象详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/06/event-trigger/" rel="prev" title="事件触发">
+                事件触发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/12/06/event-listener/"
+     data-title="跨浏览器的事件处理程序实现"
+     data-content=""
+     data-url="https://zhangguixu.github.io/2016/12/06/event-listener/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/06/event-listener/"
+           data-title="跨浏览器的事件处理程序实现" data-url="https://zhangguixu.github.io/2016/12/06/event-listener/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpeg"
+               alt="zhangguixu" />
+          <p class="site-author-name" itemprop="name">zhangguixu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhangguixu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              常用网站
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://segmentfault.com/" title="segmentfault" target="_blank">segmentfault</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gold.xitu.io/welcome" title="掘金" target="_blank">掘金</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.xuanfengge.com/" title="轩枫阁" target="_blank">轩枫阁</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/PeunZhang/" title="白色橡树" target="_blank">白色橡树</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yanhaijing.com/?url_type=39&object_type=webpage&pos=1" title="颜海镜" target="_blank">颜海镜</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/pigtail/" title="穆乙" target="_blank">穆乙</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.alloyteam.com/" title="Alloy Team" target="_blank">Alloy Team</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://f2er.club/" title="最牛前端收藏夹" target="_blank">最牛前端收藏夹</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/icepy/Front-End-Develop-Guide" title="前端开发指南" target="_blank">前端开发指南</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jstips.co/zh_CN/" title="jstips" target="_blank">jstips</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-初步实现"><span class="nav-text">1. 初步实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-更好的实现"><span class="nav-text">2. 更好的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-jquery的实现思路"><span class="nav-text">3. jquery的实现思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-修复Event对象的属性"><span class="nav-text">3.1 修复Event对象的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-中央对象保存dom元素信息"><span class="nav-text">3.2 中央对象保存dom元素信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-绑定事件处理程序"><span class="nav-text">3.3 绑定事件处理程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-清理资源"><span class="nav-text">3.4 清理资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-解绑事件处理程序"><span class="nav-text">3.5 解绑事件处理程序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-参考"><span class="nav-text">4. 参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangguixu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangguixu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

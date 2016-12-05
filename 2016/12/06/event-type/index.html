@@ -1,0 +1,1090 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="事件类型," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在DOM3级事件规定了以下几类事件：
+
+UI事件(UIEvents)，当用户与页面上的元素交互时触发
+焦点事件，当元素获得或失去焦点时触发
+鼠标事件(MouseEvents)，当用户通过鼠标在页面上执行操作时触发
+滚轮事件()，当使用鼠标滚轮时触发
+文本事件，当在文档中输入文本时触发
+键盘事件(KeyboardEvent)，当用户通过键盘在页面上执行操作时触发
+合成事件，当为IME输入字符时触发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事件类型总结">
+<meta property="og:url" content="https://zhangguixu.github.io/2016/12/06/event-type/index.html">
+<meta property="og:site_name" content="Zhangguixu's Blogs">
+<meta property="og:description" content="在DOM3级事件规定了以下几类事件：
+
+UI事件(UIEvents)，当用户与页面上的元素交互时触发
+焦点事件，当元素获得或失去焦点时触发
+鼠标事件(MouseEvents)，当用户通过鼠标在页面上执行操作时触发
+滚轮事件()，当使用鼠标滚轮时触发
+文本事件，当在文档中输入文本时触发
+键盘事件(KeyboardEvent)，当用户通过键盘在页面上执行操作时触发
+合成事件，当为IME输入字符时触发">
+<meta property="og:updated_time" content="2016-12-05T11:48:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="事件类型总结">
+<meta name="twitter:description" content="在DOM3级事件规定了以下几类事件：
+
+UI事件(UIEvents)，当用户与页面上的元素交互时触发
+焦点事件，当元素获得或失去焦点时触发
+鼠标事件(MouseEvents)，当用户通过鼠标在页面上执行操作时触发
+滚轮事件()，当使用鼠标滚轮时触发
+文本事件，当在文档中输入文本时触发
+键盘事件(KeyboardEvent)，当用户通过键盘在页面上执行操作时触发
+合成事件，当为IME输入字符时触发">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6357877092683613000',
+      author: 'Admin'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://zhangguixu.github.io/2016/12/06/event-type/"/>
+
+
+
+
+
+  <title> 事件类型总结 | Zhangguixu's Blogs </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=59687072";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zhangguixu's Blogs</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">the load to full-stack</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://zhangguixu.github.io/2016/12/06/event-type/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="zhangguixu">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/avatar.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Zhangguixu's Blogs">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Zhangguixu's Blogs" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                事件类型总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-06T03:46:18+08:00">
+                2016-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/event/" itemprop="url" rel="index">
+                    <span itemprop="name">event</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/12/06/event-type/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/06/event-type/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在<code>DOM3级事件</code>规定了以下几类事件：</p>
+<ul>
+<li>UI事件(UIEvents)，当用户与页面上的元素交互时触发</li>
+<li>焦点事件，当元素获得或失去焦点时触发</li>
+<li>鼠标事件(MouseEvents)，当用户通过鼠标在页面上执行操作时触发</li>
+<li>滚轮事件()，当使用鼠标滚轮时触发</li>
+<li>文本事件，当在文档中输入文本时触发</li>
+<li>键盘事件(KeyboardEvent)，当用户通过键盘在页面上执行操作时触发</li>
+<li>合成事件，当为IME输入字符时触发</li>
+<li>变动事件(MutationEvents)，当底层DOM结构发生变化时触发</li>
+</ul>
+<p>不同的事件类型具有不同的信息。此外，有些浏览器还会在DOM和BOM中实现其专有事件，HTML5还定义了一组事件。</p>
+<p>我们可以通过<code>document.createEvent(type)</code>来创建一个事件（已有的事件或者自定义事件都可以）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建一个事件</span></div><div class="line"><span class="keyword">var</span> event = <span class="built_in">document</span>.createEvent(<span class="string">"Event"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 初始化事件的相关信息</span></div><div class="line">event.initEvent(<span class="string">"build"</span>, <span class="literal">true</span>, <span class="literal">true</span>);</div><div class="line"></div><div class="line"><span class="comment">// 元素可以监听这个事件</span></div><div class="line">el.addEventListener(<span class="string">"build"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="comment">// 做处理</span></div><div class="line">&#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// 需要在脚本中触发事件，就会执行相对应的回调</span></div><div class="line">el.dispatchEvent(event);</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="1-UI事件"><a href="#1-UI事件" class="headerlink" title="1. UI事件"></a>1. UI事件</h2><p>常见的UI事件有</p>
+<ul>
+<li>load/unload</li>
+<li>abort</li>
+<li>error</li>
+<li>select</li>
+<li>resize</li>
+<li>scroll</li>
+</ul>
+<h3 id="1-1-load-unload-事件"><a href="#1-1-load-unload-事件" class="headerlink" title="1.1 load/unload 事件"></a>1.1 load/unload 事件</h3><p>会触发load事件的情况：</p>
+<ul>
+<li>页面完全加载后（包括所有外部资源），会触发window上面的load事件</li>
+<li>图像的加载也会触发load事件，无论是&lt;img&gt;标签还是Image对象，但要注意的是在IE8及之前版本不会生成event对象。</li>
+<li>在IE9+、firefox、opera、chrome、safari3+等浏览器中，&lt;script&gt;也会触发load事件，以便开发人员确定动态加载的js文件是否加载完毕。</li>
+<li>IE和Opera还支持&lt;link&gt;元素上的load事件</li>
+</ul>
+<p>与load事件对应就是unload事件，这个事件在文档被完全卸载后触发，其实用户从一个页面切换到另一个页面就会发生unload事件，而利用这个事件最多的情况是清除引用，以避免内存泄漏。</p>
+<p>另外说明一点，通常我们会在页面中看到：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">""</span> <span class="attr">onunload</span>=<span class="string">""</span>&gt;</span></div><div class="line">        </div><div class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>一般来说，在window上面发生的任何事件都可以在body元素中通过相应的属性来指定，因为在HTML中无法访问window对象，实际上，这只是为了保证向后兼容的一种权宜之计，但所有浏览器都能很好地支持这种方式。</p>
+<h3 id="1-2-resize事件"><a href="#1-2-resize事件" class="headerlink" title="1.2  resize事件"></a>1.2  resize事件</h3><p>当浏览器窗口被调整到一个新的高度或宽度时，就会触发resize事件，这个事件在window上面触发。</p>
+<p>浏览器窗口最小化或最大化时也会触发resize事件。</p>
+<p>resize事件可能会被频繁触发，浏览器会有一些机制来保证两个resize事件触发有一定的间歇（例如20ms），我们自己在处理的时候也要特别注意，详情见<a href="../../javascript/skill/throttle.md">函数节流</a>。</p>
+<h3 id="1-3-scroll事件"><a href="#1-3-scroll事件" class="headerlink" title="1.3 scroll事件"></a>1.3 scroll事件</h3><ul>
+<li>scroll事件是在window对象上发生的，但它实际表示的则是页面中相应元素的变化。</li>
+<li>在混杂模式下，可以通过body元素的<code>scrollLeft</code>和<code>scrollTop</code>来监控这一变化。</li>
+<li>在标准模式下，除了safari（仍然是通过body），所有浏览器都会通过html元素来反应这一变化。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"scroll"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">document</span>.compatMode == <span class="string">"CSS1Compat"</span>)&#123;</div><div class="line">        alert(<span class="built_in">document</span>.documentElement.scrollTop);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        alert(<span class="built_in">document</span>.body.scrollTop);</div><div class="line">    &#125;</div><div class="line">&#125;, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
+<p>需要注意的是，scroll事件在文档被滚动期间会被重复地触发，跟resize的处理类似。</p>
+<h2 id="2-焦点事件"><a href="#2-焦点事件" class="headerlink" title="2. 焦点事件"></a>2. 焦点事件</h2><p>焦点事件会在页面元素获得或失去焦点时触发，利用这些事件并与</p>
+<ul>
+<li>document.hasFocus()</li>
+<li>document.activeElement</li>
+</ul>
+<p>就可以知晓用户在页面上的行踪。</p>
+<p>常见焦点事件共有：</p>
+<ul>
+<li>blur：在元素失去焦点时触发，这个事件不会<code>冒泡</code>，所有浏览器都支持</li>
+<li>focus：在元素获得焦点时触发，这个事件不会<code>冒泡</code>，所有浏览器都支持</li>
+<li>focusin：在元素获得焦点时触发，这个事件与HTML事件focus等价，但是会冒泡。支持的浏览器有IE5.5+、opera 11.5+、chrome、safari 5.1+</li>
+<li>focusout：在元素失去焦点时触发，这个事件与HTML事件blur等价，支持的浏览器有IE5.5+、opera 11.5+、chrome、safari 5.1+</li>
+</ul>
+<p><em>DOMFocusIn和DOMFocusOut只有Opera支持，这里就不介绍。</em></p>
+<p>当焦点从页面中的一个元素移动到另一个元素时，会依次触发下列事件：</p>
+<ul>
+<li>focusout在失去焦点的元素中触发</li>
+<li>focusin在获得焦点的元素中触发</li>
+<li>blur在失去焦点的元素上触发</li>
+<li>focus在获得焦点的元素中触发</li>
+</ul>
+<h2 id="3-鼠标与滚轮事件"><a href="#3-鼠标与滚轮事件" class="headerlink" title="3. 鼠标与滚轮事件"></a>3. 鼠标与滚轮事件</h2><p>鼠标事件是Web开发中最常用的一类事件，常见的鼠标事件有：</p>
+<ul>
+<li>click：在用户单击鼠标按钮或者按下回车键时触发。</li>
+<li>dbclick：在用户双击鼠标按钮时触发，在DOM3级事件纳入了标准。</li>
+<li><p>mousedown：在用户按下了任意鼠标按钮时触发。</p>
+</li>
+<li><p>mouseenter：在鼠标光标从元素外部<code>首次</code>移动到元素范围之内触发，这个事件不冒泡，而且在光标移动到后代元素上不会触发。</p>
+</li>
+<li>mouseleave：</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li>《JavaScript高级程序设计》</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createEvent" target="_blank" rel="external">document.createEvent()</a></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/事件类型/" rel="tag"># 事件类型</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/06/event-trigger/" rel="next" title="事件触发">
+                <i class="fa fa-chevron-left"></i> 事件触发
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/12/06/event-type/"
+     data-title="事件类型总结"
+     data-content=""
+     data-url="https://zhangguixu.github.io/2016/12/06/event-type/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/06/event-type/"
+           data-title="事件类型总结" data-url="https://zhangguixu.github.io/2016/12/06/event-type/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpeg"
+               alt="zhangguixu" />
+          <p class="site-author-name" itemprop="name">zhangguixu</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhangguixu" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              常用网站
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://segmentfault.com/" title="segmentfault" target="_blank">segmentfault</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gold.xitu.io/welcome" title="掘金" target="_blank">掘金</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.xuanfengge.com/" title="轩枫阁" target="_blank">轩枫阁</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/PeunZhang/" title="白色橡树" target="_blank">白色橡树</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ruanyifeng.com/blog/" title="阮一峰" target="_blank">阮一峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://yanhaijing.com/?url_type=39&object_type=webpage&pos=1" title="颜海镜" target="_blank">颜海镜</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰" target="_blank">廖雪峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/pigtail/" title="穆乙" target="_blank">穆乙</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.alloyteam.com/" title="Alloy Team" target="_blank">Alloy Team</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://f2er.club/" title="最牛前端收藏夹" target="_blank">最牛前端收藏夹</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/icepy/Front-End-Develop-Guide" title="前端开发指南" target="_blank">前端开发指南</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jstips.co/zh_CN/" title="jstips" target="_blank">jstips</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-UI事件"><span class="nav-text">1. UI事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-load-unload-事件"><span class="nav-text">1.1 load/unload 事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-resize事件"><span class="nav-text">1.2  resize事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-scroll事件"><span class="nav-text">1.3 scroll事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-焦点事件"><span class="nav-text">2. 焦点事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-鼠标与滚轮事件"><span class="nav-text">3. 鼠标与滚轮事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhangguixu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhangguixu"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
